@@ -228,5 +228,34 @@
 		   </p>
 		</form>
 		
+		</br>
+		
+		<h3>Permet de trouver tous les points proches à moins de X km</h3>
+		<form method="post" action="moinsDeXKM.php">
+		   <p>
+		   
+			   <label for="distanceMax">Distance Max</label><br />
+			   <input type="text" name="distanceMax" id="distanceMax">
+			   <br/>
+			   <br/>
+			   <label for="pointCentral">Point central</label><br />
+			   <select name="pointCentral" id="pointCentral">
+					<option value="P:Ideal">Ideal</option>
+					<option value="P:Comble">Comble</option>
+					<option value="P:Mandarine">Mandarine</option>
+					<option value="P:Sanglier">Sanglier</option>
+					<option value="P:Brigants">Brigants</option>
+					<option value="P:Vorasset">Vorasset</option>
+					<option value="P:Etudiants">Etudiants</option>
+					<option value="P:Grand-Bois">Grand-Bois</option>
+					<option value="P:Ourson">Ourson</option>
+					<option value="P:Mont-Joux">Mont-Joux</option>
+			   </select>
+			   <br/>
+			   <br/>
+			   <input type="submit" value="Envoyer" />
+		   </p>
+		</form>
+		
     </body>
 </html>
