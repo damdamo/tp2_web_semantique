@@ -1,0 +1,81 @@
+-- REQUETE POUR COUNT --
+
+SELECT ?a ?b
+WHERE {
+
+  ?a a :Point.
+  ?b a :Point.
+
+  ?a (:redRun|:greenRun|:blueRun|:blackRun) ?b.
+  
+}
+
+
+-- Requete pour un nombre d'etoiles et un endroit défini
+
+SELECT ?hotel
+WHERE {
+
+  ?hotel a :Hotel.
+  ?hotel :star "3"^^xsd:number.
+  ?hotel :isAt P:Ideal.
+    
+}
+
+-- Pour tout point et toutes étoiles --
+SELECT ?hotel
+WHERE {
+
+  ?hotel a :Hotel.
+  ?hotel :star ?c.
+  ?hotel :isAt ?d.
+    
+}
+
+-- Recupere les coordonnées --
+
+SELECT ?long1 ?lat1 ?long2 ?lat2
+WHERE {
+
+	P:Ideal :lon ?long1.
+	P:Ideal :lat ?lat1.
+  
+	P:Ourson :lon ?long2.
+    P:Ourson :lat ?lat2.
+    
+}
+
+
+-- Récupérer tous les hotels et restaurants --
+
+SELECT ?hotRest
+WHERE {
+  ?hotRest a ?b
+  Filter(?b = :Hotel || ?b = :Restaurant).     
+}
+
+SELECT ?hotRest
+WHERE {
+  ?hotRest a ?b
+  Filter(?b = :Hotel || ?b = :Restaurant).  
+  
+  ?hotRest :isAt P:Vorasset.
+}
+
+-- Recupère tous les hotels et restaurants des voisins --
+SELECT ?hotRest
+WHERE {
+
+  P:Ideal (:redRun|:greenRun|:blackRun|:blueRun|:lift) ?voisins.
+  
+  ?hotRest :isAt ?voisins.
+}
+
+-- Récupérer les points --
+
+SELECT ?point
+WHERE {
+
+	?point a :Point.
+
+}

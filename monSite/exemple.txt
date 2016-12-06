@@ -1,0 +1,4 @@
+Select distinct ?a
+where{
+	P:Comble (:greenRun|:redRun|:lift)?a
+}

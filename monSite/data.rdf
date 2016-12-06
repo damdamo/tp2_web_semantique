@@ -1,0 +1,211 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> . 
+
+@prefix : <http://megeve.com/> . 
+@prefix P: <http://megeve.com/location/> .
+@prefix R: <http://megeve.com/Restaurant/> .
+@prefix H: <http://megeve.com/Hotels/> .
+
+:Object a rdfs:Class.
+
+:Point a rdfs:Class .
+:Point rdfs:subClassOf :Object .
+
+:Restaurant a rdfs:Class .
+:Restaurant rdfs:subClassOf :Object .
+
+:Hotel a rdfs:Class .
+:Hotel rdfs:subClassOf :Object .
+
+:name a rdf:Property .
+:name rdfs:domain :Object .
+:name rdfs:range xsd:string .
+
+:id a rdf:Property .
+:id rdfs:domain :Point .
+:id rdfs:range xsd:number .
+
+:lat a rdf:Property .
+:lat rdfs:domain :Point .
+:lat rdfs:range xsd:number .
+
+:lon a rdf:Property .
+:lon rdfs:domain :Point .
+:lon rdfs:range xsd:number .
+
+:star a rdf:Property .
+:star rdfs:domain :Restaurant .
+:star rdfs:range xsd:number .
+
+P:Ideal rdf:type :Point .
+P:Ideal :name "Ideal" .
+P:Ideal :lat "45.847348"^^xsd:number .
+P:Ideal :lon "6.652194"^^xsd:number .
+P:Ideal :id "1"^^xsd:number .
+
+P:Comble rdf:type :Point .
+P:Comble :name "Comble"^^xsd:string .
+P:Comble :lat "45.858931"^^xsd:number .
+P:Comble :lon "6.662096"^^xsd:number .
+P:Comble :id "2"^^xsd:number .
+
+P:Mandarine rdf:type :Point .
+P:Mandarine :name "Mandarine" .
+P:Mandarine :lat "45.859305"^^xsd:number .
+P:Mandarine :lon "6.661067"^^xsd:number .
+P:Mandarine :id "3"^^xsd:number .
+
+P:Sanglier rdf:type :Point .
+P:Sanglier :name "Sanglier" .
+P:Sanglier :lat "45.858502"^^xsd:number .
+P:Sanglier :lon "6.658912"^^xsd:number .
+P:Sanglier :id "4"^^xsd:number .
+
+P:Brigants rdf:type :Point .
+P:Brigants :name "Brigants" .
+P:Brigants :lat "45.858416"^^xsd:number .
+P:Brigants :lon "6.658824"^^xsd:number .
+P:Brigants :id "5"^^xsd:number .
+
+P:Vorasset rdf:type :Point .
+P:Vorasset :name "Vorasset".
+P:Vorasset :lat "45.854401"^^xsd:number .
+P:Vorasset :lon "6.632894"^^xsd:number .
+P:Vorasset :id "6"^^xsd:number .
+
+P:Etudiants rdf:type :Point .
+P:Etudiants :name "Etudiants".
+P:Etudiants :lat "45.840165"^^xsd:number .
+P:Etudiants :lon "6.663283"^^xsd:number .
+P:Etudiants :id "7"^^xsd:number .
+
+P:Ourson rdf:type :Point .
+P:Ourson :name "Ourson" .
+P:Ourson :lat "45.8691518"^^xsd:number .
+P:Ourson :lon "6.6361756"^^xsd:number .
+P:Ourson :id "8"^^xsd:number .
+
+P:Grand-Bois rdf:type :Point .
+P:Grand-Bois :name "Grand-Bois" .
+P:Grand-Bois :lat "45.8601267"^^xsd:number .
+P:Grand-Bois :lon "6.6459174"^^xsd:number .
+P:Grand-Bois :id "9"^^xsd:number .
+
+P:Mont-Joux rdf:type :Point .
+P:Mont-Joux :name "Mont-Joux" .
+P:Mont-Joux :lat "45.840165"^^xsd:number .
+P:Mont-Joux :lon "6.663283"^^xsd:number .
+P:Mont-Joux :id "10"^^xsd:number .
+
+P:Freddy rdf:type :Point .
+P:Freddy :name "Freddy" .
+P:Freddy :lat "45.848899"^^xsd:number .
+P:Freddy :lon "6.663581"^^xsd:number .
+P:Freddy :id "11"^^xsd:number . 
+
+P:Comble :lift P:Ideal .
+P:Grand-bois :lift P:Comble .
+P:Ourson :lift P:Grand-bois .
+P:Mandarine :lift P:Comble .
+P:Brigants :lift P:Ideal .
+P:Vorasset :lift P:Brigants .
+P:Ideal :lift P:Etudiants .
+P:Mont-Joux :lift P:Freddy .
+
+P:Comble :greenRun P:Ideal .
+P:Comble :greenRun P:Mandarine .
+P:Ideal :greenRun P:Vorasset .
+P:Grand-Bois :greenRun P:Ourson .
+P:Mont-Joux :greenRun P:Ideal .
+P:Freddy :greenRun P:Ideal .
+P:Freddy :greenRun P:Comble .
+
+P:Ideal :blueRun P:Comble .
+
+P:Ideal :redRun P:Etudiants .
+P:Etudiants :redRun P:Mont-Joux .
+P:Comble :redRun P:Ourson .
+P:Mandarine :redRun P:Brigants .
+P:Brigants :redRun P:Vorasset .
+P:Ideal :redRun P:Freddy .
+P:Freddy :redRun P:Mont-Joux .
+
+P:Mandarine :blackRun P:Vorasset .
+P:Etudiant :blackRun P:Freddy .
+P:Sanglier :blackRun P:Vorasset .
+
+H:Ideal rdf:type :Hotel .
+H:Ideal :isAt P:Ideal .
+H:Ideal :star "4"^^xsd:number .
+H:Ideal :name "Le Chalet"^^xsd:string .
+
+H:Dealzi rdf:type :Hotel .
+H:Dealzi :isAt P:Ideal .
+H:Dealzi :star "3"^^xsd:number .
+H:Dealzi :name "PanoraZoom"^^xsd:string .
+
+H:Gootenagh rdf:type :Hotel .
+H:Gootenagh :isAt P:Vorasset .
+H:Gootenagh :star "2"^^xsd:number .
+H:Gootenagh :name "Gootenagh"^^xsd:string .
+
+H:Gervais rdf:type :Hotel .
+H:Gervais :isAt P:Etudiants .
+H:Gervais :star "1"^^xsd:number .
+H:Gervais :name "St-Gervais"^^xsd:string .
+
+H:Carmen rdf:type :Hotel .
+H:Carmen :isAt P:Etudiants .
+H:Carmen :star "5"^^xsd:number .
+H:Carmen :name "Hotel Carmen"^^xsd:string .
+
+H:Longemalle rdf:type :Hotel .
+H:Longemalle :isAt P:Etudiants .
+H:Longemalle :star "3"^^xsd:number .
+H:Longemalle :name "Hotel Longemalle"^^xsd:string .
+
+H:Hott rdf:type :Hotel .
+H:Hott :isAt P:Etudiants .
+H:Hott :star "5"^^xsd:number .
+H:Hott :name "Hott"^^xsd:string .
+
+H:Ourson rdf:type :Hotel .
+H:Ourson :isAt P:Ourson .
+H:Ourson :star "2"^^xsd:number .
+H:Ourson :name "Teddy's Home"^^xsd:string .
+
+R:Evasion rdf:type :Restaurant .
+R:Evasion :isAt P:Mont-Joux .
+R:Evasion :star "3"^^xsd:number .
+R:Evasion :name "Evasion"^^xsd:string .
+
+R:Grand-Bois rdf:type :Restaurant .
+R:Grand-Bois :name "Grand-Bois"^^xsd:string. 
+R:Grand-Bois :star "4"^^xsd:number .
+R:Grand-Bois :isAt P:Ourson .
+
+R:Mont-Arbois rdf:type :Restaurant .
+R:Mont-Arbois :name "Mont d'Arbois"^^xsd:string .
+R:Mont-Arbois :star "2"^^xsd:number .
+R:Mont-Arbois :isAt P:Comble .
+
+R:Jardineige rdf:type :Restaurant .
+R:Jardineige :name "Jardineige"^^xsd:string .
+R:Jardineige :star "4"^^xsd:number .
+R:Jardineige :isAt P:Vorasset .
+
+R:Flocon rdf:type :Restaurant .
+R:Flocon :name "Flocon"^^xsd:string .
+R:Flocon :star "5"^^xsd:number .
+R:Flocon :isAt P:Vorasset .
+
+R:Princesse rdf:type :Restaurant .
+R:Princesse :name "La Princesse"^^xsd:string .
+R:Princesse :star "1"^^xsd:number .
+R:Princesse :isAt P:Grand-Bois .
+
+R:Mercury rdf:type :Restaurant .
+R:Mercury :name "Mercury"^^xsd:string .
+R:Mercury :star "4"^^xsd:number .
+R:Mercury :isAt P:Freddy .
