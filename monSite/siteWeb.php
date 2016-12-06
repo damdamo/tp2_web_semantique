@@ -67,5 +67,54 @@
 		   </p>
 		</form>
 		
+		</br>
+		
+		<h3>Trouve un hôtel ou un restaurant pour un endroit et un nombre d'étoiles défini</h3>
+		<form method="post" action="hotelRestaurant.php">
+		   <p>
+			   <label for="hotelOuResto">Hôtel ou Restaurant</label><br />
+			   <select name="hotelOuResto" id="hotelOuResto">
+				   <option value="Hotel">Hôtel</option>
+				   <option value="Restaurant">Restaurant</option>
+			   </select>
+			   
+			   <br/>
+			   <br/>
+			   
+			   <label for="nbEtoiles">Nombre d'étoiles</label><br />
+			   <select name="nbEtoiles" id="nbEtoiles">
+					<option value="allEtoiles">all</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+			   </select>
+			   
+			   <br/>
+			   <br/>
+			   
+			   <label for="place">Localisation</label><br />
+			   <select name="place" id="place">
+					<option value="allPlaces">All</option>
+					<option value="P:Ideal">Ideal</option>
+					<option value="P:Comble">Comble</option>
+					<option value="P:Mandarine">Mandarine</option>
+					<option value="P:Sanglier">Sanglier</option>
+					<option value="P:Brigants">Brigants</option>
+					<option value="P:Vorasset">Vorasset</option>
+					<option value="P:Etudiants">Etudiants</option>
+					<option value="P:Grand-Bois">Grand-Bois</option>
+					<option value="P:Ourson">Ourson</option>
+					<option value="P:Mont-Joux">Mont-Joux</option>
+			   </select>
+			   
+			   <br/>
+			   <br/>
+			   
+			   <input type="submit" value="Envoyer" />
+		   </p>
+		</form>
+		
     </body>
 </html>
