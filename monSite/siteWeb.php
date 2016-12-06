@@ -47,8 +47,25 @@
 		   </p>
 		</form>
 		
+		<br/>
 		
-		<h3>Sélectionner les pistes d'un niveau de difficulté</h3>
+		<h3>Permet de calculer le nombre de pistes d'une couleur ou de toutes</h3>
+		<!-- LA VARIABLE ALL est interprété comme toutes les pistes -->
+		<form method="post" action="countPiste.php">
+		   <p>
+			   <label for="countPiste">Point de depart</label><br />
+			   <select name="countPiste" id="countPiste">
+				   <option value="All">All</option>
+				   <option value="greenRun">Pistes vertes</option>
+				   <option value="blueRun">Pistes bleues</option>
+				   <option value="redRun">Pistes rouges</option>
+				   <option value="blackRun">Pistes noires</option>
+			   </select>
+			   <br/>
+			   <br/>
+			   <input type="submit" value="Envoyer" />
+		   </p>
+		</form>
 		
     </body>
 </html>
