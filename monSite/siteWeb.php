@@ -180,5 +180,53 @@
 		   </p>
 		</form>
 		
+		<br/>
+		
+		<h3>Permet de calculer un itinéraire entre deux points avec la possibilité d'ajouter une restriction sur le niveau maximum des pistes accessibles</h3>
+		<form method="post" action="itineraire.php">
+		   <p>
+			   <label for="pointDep">Point de départ</label><br />
+			   <select name="pointDep" id="pointDep">
+					<option value="P:Ideal">Ideal</option>
+					<option value="P:Comble">Comble</option>
+					<option value="P:Mandarine">Mandarine</option>
+					<option value="P:Sanglier">Sanglier</option>
+					<option value="P:Brigants">Brigants</option>
+					<option value="P:Vorasset">Vorasset</option>
+					<option value="P:Etudiants">Etudiants</option>
+					<option value="P:Grand-Bois">Grand-Bois</option>
+					<option value="P:Ourson">Ourson</option>
+					<option value="P:Mont-Joux">Mont-Joux</option>
+			   </select>
+			   <br/>
+			   <br/>
+			   <label for="pointFin">Point d'arrivé</label><br />
+			   <select name="pointFin" id="pointFin">
+					<option value="P:Ideal">Ideal</option>
+					<option value="P:Comble">Comble</option>
+					<option value="P:Mandarine">Mandarine</option>
+					<option value="P:Sanglier">Sanglier</option>
+					<option value="P:Brigants">Brigants</option>
+					<option value="P:Vorasset">Vorasset</option>
+					<option value="P:Etudiants">Etudiants</option>
+					<option value="P:Grand-Bois">Grand-Bois</option>
+					<option value="P:Ourson">Ourson</option>
+					<option value="P:Mont-Joux">Mont-Joux</option>
+			   </select>
+			   <br/>
+			   <br/>
+			   <label for="difficulteMax">Niveau max</label><br />
+			   <select name="difficulteMax" id="difficulteMax">
+					<option value="blackRun">Noir</option>
+					<option value="redRun">Rouge</option>
+					<option value="blueRun">Bleu</option>
+					<option value="greenRun">Vert</option>
+			   </select>
+			   <br/>
+			   <br/>
+			   <input type="submit" value="Envoyer" />
+		   </p>
+		</form>
+		
     </body>
 </html>
