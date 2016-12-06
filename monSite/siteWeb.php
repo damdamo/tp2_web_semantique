@@ -10,6 +10,7 @@
     <body>
 		
 		<h1> TP2 WEB SEMANTIQUE <h1>
+		<h2>Cabot Florian / Morard Damien </h2>
 		
 		<h3>Connaître tous les points possibles à partir d'un endroit et d'un type de piste donnée </h3>
 		<form method="post" action="pointsDisponible.php">
@@ -123,7 +124,7 @@
 		   <p>
 			   <label for="point1">Point de depart</label><br />
 			   <select name="point1" id="point1">
-				   <option value="P:Ideal">Ideal</option>
+					<option value="P:Ideal">Ideal</option>
 					<option value="P:Comble">Comble</option>
 					<option value="P:Mandarine">Mandarine</option>
 					<option value="P:Sanglier">Sanglier</option>
@@ -156,6 +157,28 @@
 		</form>
 		
 		</br>
+		
+		<h3>Permet de trouver tous les hôtels et restaurants voisins par rapport à un point</h3>
+		<form method="post" action="voisinsHotelEtResto.php">
+		   <p>
+			   <label for="pointSource">Point source</label><br />
+			   <select name="pointSource" id="pointSource">
+					<option value="P:Ideal">Ideal</option>
+					<option value="P:Comble">Comble</option>
+					<option value="P:Mandarine">Mandarine</option>
+					<option value="P:Sanglier">Sanglier</option>
+					<option value="P:Brigants">Brigants</option>
+					<option value="P:Vorasset">Vorasset</option>
+					<option value="P:Etudiants">Etudiants</option>
+					<option value="P:Grand-Bois">Grand-Bois</option>
+					<option value="P:Ourson">Ourson</option>
+					<option value="P:Mont-Joux">Mont-Joux</option>
+			   </select>
+			   <br/>
+			   <br/>
+			   <input type="submit" value="Envoyer" />
+		   </p>
+		</form>
 		
     </body>
 </html>
