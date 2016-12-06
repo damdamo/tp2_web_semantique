@@ -42,7 +42,7 @@
 	print "<p> On obtient les coordonnées de nos points </p>";
 	
 	/* display the results in an HTML table */
-	echo "<table border='1'>" ;
+	/*echo "<table border='1'>" ;
 	print "<tr>
        <th>Point 1 longitude</th>
 	   <th>Point 1 latitude</th>
@@ -51,7 +51,7 @@
 	   
    </tr>
 	";
-	/* loop for each returned row */
+	/* loop for each returned row *//*
 	foreach( $rows as $row ) { 
 		print "<tr>
 			<td>" .$row['long1'] . "</td>
@@ -60,8 +60,25 @@
 			<td>" .$row['lat2'] . "</td>
 		</tr>";
 	}
-	echo "</table>"
-	
+echo "</table>"*/
+
+	foreach( $rows as $row) {
+
+		$R = 6371000; // metres
+		$phi1 = $row['lat1'] * pi() / 180;
+		$phi2 = $row['lat2'] * pi() / 180;
+		$deltaPhi = ($row['lat2']-$row['lat1']) * pi() / 180;
+		$deltaLambda = ($row['long2']-$row['long1']) * pi() / 180;
+
+		$a = sin($deltaPhi/2) * sin($deltaPhi/2) +
+			cos($phi1) * cos($phi2) *
+			sin($deltaLambda/2) * sin($deltaLambda/2);
+		$c = 2 * atan2(sqrt($a), sqrt(1-$a));
+
+		$d = $R * $c;
+
+		echo 'La distance entre les deux points est de ' . ($d / 1000) . ' km';
+	}
 ?>
 
 <br/><input type="button" name="pagePrincipale" value="Revenir sur la page principale" onclick="self.location.href='siteWeb.php'"> 
