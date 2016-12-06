@@ -116,5 +116,46 @@
 		   </p>
 		</form>
 		
+				<br/>
+				
+		<h3>Permet de calculer la distance entre deux points</h3>
+		<form method="post" action="distance2Points.php">
+		   <p>
+			   <label for="point1">Point de depart</label><br />
+			   <select name="point1" id="point1">
+				   <option value="P:Ideal">Ideal</option>
+					<option value="P:Comble">Comble</option>
+					<option value="P:Mandarine">Mandarine</option>
+					<option value="P:Sanglier">Sanglier</option>
+					<option value="P:Brigants">Brigants</option>
+					<option value="P:Vorasset">Vorasset</option>
+					<option value="P:Etudiants">Etudiants</option>
+					<option value="P:Grand-Bois">Grand-Bois</option>
+					<option value="P:Ourson">Ourson</option>
+					<option value="P:Mont-Joux">Mont-Joux</option>
+			   </select>
+			   <br/>
+			   <br/>
+			   <label for="point2">Point d'arrivé</label><br />
+			   <select name="point2" id="point2">
+					<option value="P:Mont-Joux">Mont-Joux</option>
+					<option value="P:Comble">Comble</option>
+					<option value="P:Mandarine">Mandarine</option>
+					<option value="P:Sanglier">Sanglier</option>
+					<option value="P:Brigants">Brigants</option>
+					<option value="P:Vorasset">Vorasset</option>
+					<option value="P:Etudiants">Etudiants</option>
+					<option value="P:Grand-Bois">Grand-Bois</option>
+					<option value="P:Ourson">Ourson</option>
+					<option value="P:Ideal">Ideal</option>
+			   </select>
+			   <br/>
+			   <br/>
+			   <input type="submit" value="Envoyer" />
+		   </p>
+		</form>
+		
+		</br>
+		
     </body>
 </html>
