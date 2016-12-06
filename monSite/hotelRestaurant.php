@@ -11,7 +11,23 @@
 		echo "<h1>getRemoteSotre error<h1>" ;
 	}
 	
-	//NE GERE PAS ENCORE LE CAS ALL A DEFINIR!
+
+	if($_POST['nbEtoiles'] == 'allEtoiles')
+	{
+		$critereEtoile = '';
+	}
+	else
+	{
+		$critereEtoile = '?hotelOuResto :star "'.$_POST["nbEtoiles"].'"^^xsd:integer.';
+	}
+	if($_POST['place'] == 'allPlaces')
+	{
+		$criterePlace = '';
+	}
+	else
+	{
+		$criterePlace = '?hotelOuResto :isAt '.$_POST["place"].'.';
+	}
 
 	$query = '
 		PREFIX : <http://megeve.com/>
@@ -24,9 +40,8 @@
 		where {  
 		
 			?hotelOuResto a :'.$_POST["hotelOuResto"].'.
-			?hotelOuResto :star "'.$_POST["nbEtoiles"].'"^^xsd:integer.
-			?hotelOuResto :isAt '.$_POST["place"].'.
-			
+				'.$critereEtoile.'
+				'.$criterePlace.'
 		}
 		limit 100
 	';
