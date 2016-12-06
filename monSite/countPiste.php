@@ -17,6 +17,23 @@
 		{P:Comble :'.$_POST["niveau2"].' ?a}
 		*/
 
+	if($_POST['countPiste'] != "All")
+	{
+		$critere = '?a :' .$_POST['countPiste']. ' ?b';
+	}
+	else
+	{
+		$critere = '
+			{?a :greenRun ?b}
+			UNION
+			{?a :blueRun ?b}
+			UNION
+			{?a :redRun ?b}
+			UNION
+			{?a :blackRun ?b}
+			';
+	}
+
 	$query = '
 		PREFIX : <http://megeve.com/>
 		PREFIX P: <http://megeve.com/location/>
@@ -29,13 +46,7 @@
 		
 			?a a :Point.
 			?b a :Point.
-			{?a :greenRun ?b}
-			UNION
-			{?a :blueRun ?b}
-			UNION
-			{?a :redRun ?b}
-			UNION
-			{?a :blackRun ?b}
+			'. $critere .'
 		}
 		limit 100
 	';
@@ -48,9 +59,10 @@
 		print_r($errs);
 	}
 
-	print "<p> Le nombre de pistes pour la condition demandée est: </p>";
+	$nb = count($rows);
+	echo "<p> Le nombre de pistes pour la condition demandée est de " . $nb . " </p>";
 	
-	/* display the results in an HTML table */
+	/* display the results in an HTML table *//*
 	echo "<table border='1'>" ;
 	print "
 		<tr>
@@ -58,7 +70,7 @@
 		    <th>b</th>
 	   </tr>
 	";
-	/* loop for each returned row */
+	/* loop for each returned row *//*
 	foreach( $rows as $row ) { 
 		print "
 		<tr>
@@ -67,7 +79,7 @@
 		</tr>";
 	}
 	echo "</table>"
-	
+	 */
 ?>
 
 <br/><input type="button" name="pagePrincipale" value="Revenir sur la page principale" onclick="self.location.href='siteWeb.php'"> 
