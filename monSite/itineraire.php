@@ -72,6 +72,7 @@ function getNeighbours($place)
 
 	$stack = array();
 
+	/* ne fonctionne en fait pas encore */
 	function computePath($src, $dest)
 	{
 		$stack = array_push($stack, $src)
@@ -84,8 +85,6 @@ function getNeighbours($place)
 			$neighs = getNeighbours($src, $_POST
 		}
 	}
-
-	/* C'EST TROP LA MERDE EN FAIT, PAS LE TEMPS DESOLE*/
 
 
 	print "<p> Le chemin permettant d'aller de ".$_POST["pointDep"]." à ".$_POST["pointFin"]." est: </p>";
