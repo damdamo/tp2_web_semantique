@@ -36,6 +36,22 @@
 		print_r($errs);
 	}
 
+	$lat1 = 0;
+	$long1 = 0;
+
+	foreach( $rows as $row) {
+	
+		$tokens = explode('/', $row['points']);
+		$pointName = trim(end($tokens));
+
+		if($_POST['pointCentral'] == 'P:' . $pointName)
+		{
+			$lat1 = $row['lat'];
+			$long1 = $row['long'];
+		}
+
+	}
+
 	print "<p> Les points à moins de ".$_POST["distanceMax"]." km sont: </p>";
 	
 	/* display the results in an HTML table */
@@ -48,11 +64,27 @@
 	";
 	/* loop for each returned row */
 	foreach( $rows as $row ) { 
+		$R = 6371000; // metres
+		$phi1 = $lat1 * pi() / 180;
+		$phi2 = $row['lat'] * pi() / 180;
+		$deltaPhi = ($row['lat']-$lat1) * pi() / 180;
+		$deltaLambda = ($row['long']-$long1) * pi() / 180;
+
+		$a = sin($deltaPhi/2) * sin($deltaPhi/2) +
+			cos($phi1) * cos($phi2) *
+			sin($deltaLambda/2) * sin($deltaLambda/2);
+		$c = 2 * atan2(sqrt($a), sqrt(1-$a));
+
+		$d = $R * $c;
+
+		if($d / 1000 <= $_POST['distanceMax'])
+		{
 		print "<tr>
 			<td>" .$row['points'] . "</td>
 			<td>" .$row['long'] . "</td>
 			<td>" .$row['lat'] . "</td>
 		</tr>";
+		}
 	}
 	echo "</table>"
 	
