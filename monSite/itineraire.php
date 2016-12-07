@@ -1,8 +1,13 @@
 ﻿<?php
+
+	$maxLevel = $_POST['difficulteMax'];
+
+function getNeighbours($place)
+{
 	include_once('semsol/ARC2.php'); /* ARC2 static class inclusion */ 
 
 	$dbpconfig = array(
-	"remote_store_endpoint" => "http://ub414.duckdns.org:8080/rdf4j-workbench/repositories/tp2_damien/query",
+		"remote_store_endpoint" => "http://ub414.duckdns.org:8080/rdf4j-workbench/repositories/tp2_damien/query",
 	);
 
 	$store = ARC2::getRemoteStore($dbpconfig); 
@@ -10,6 +15,30 @@
 	if ($errs = $store->getErrors()) {
 		echo "<h1>getRemoteSotre error<h1>" ;
 	}
+
+	$criterePiste = '{'.$place.' :greenRun ?voisins}';
+	if($maxLevel != 'greenRun')
+	{
+		$criterePiste = $criterePiste . '
+						UNION 
+						{'.$place.' :blueRun ?voisins}';
+	
+		if($maxLevel != 'blueRun')
+		{
+			$criterePiste = $criterePiste . '
+							UNION 
+							{'.$place.' :redRun ?voisins}';
+			if($maxLevel != 'redRun')
+			{
+				$criterePiste = $criterePiste . '
+								UNION 
+								{'.$place.' :blackRun ?voisins}';
+	
+			}
+	
+		}
+	}
+	$criterePiste = $criterePiste . '.';
 
 	$query = '
 		PREFIX : <http://megeve.com/>
@@ -20,35 +49,51 @@
 		PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
 		select distinct ?voisins
 		where {  
-		
+
 			?voisins a :Point.
-			{'.$_POST["pointDep"].' :greenRun ?voisins}
-			UNION
-			{'.$_POST["pointDep"].' :blueRun ?voisins}
-			UNION
-			{'.$_POST["pointDep"].' :redRun ?voisins}
-			UNION
-			{'.$_POST["pointDep"].' :blackRun ?voisins}
-			UNION
-			{'.$_POST["pointDep"].' :lift ?voisins}.
+			' . $criterePiste . '
 		}
 		limit 100
 	';
 
 
 	$rows = $store->query($query, 'rows'); /* execute the query */
-	
+
 	if ($errs = $store->getErrors()) {
 		echo "Query errors" ;
 		print_r($errs);
 	}
+
+	return $rows;
+}
+
+
+
+
+	$stack = array();
+
+	function computePath($src, $dest)
+	{
+		$stack = array_push($stack, $src)
+		if($src == $dest)
+		{
+			return true;
+		}
+		else
+		{
+			$neighs = getNeighbours($src, $_POST
+		}
+	}
+
+	/* C'EST TROP LA MERDE EN FAIT, PAS LE TEMPS DESOLE*/
+
 
 	print "<p> Le chemin permettant d'aller de ".$_POST["pointDep"]." à ".$_POST["pointFin"]." est: </p>";
 	
 	/* display the results in an HTML table */
 	echo "<table border='1'>" ;
 	print "<tr>
-       <th>Voisins</th>
+       <th>Itinéraire</th>
    </tr>
 	";
 	/* loop for each returned row */
